@@ -5,8 +5,8 @@ import userEvent from "@testing-library/user-event";
 import { fetchShow as mockFetchShow } from "./api/fetchShow";
 
 const showData = {
-  data: [
-    {
+  data: {
+    data: {
       id: 2993,
       url: "http://www.tvmaze.com/shows/2993/stranger-things",
       name: "Stranger Things",
@@ -702,14 +702,19 @@ const showData = {
         ],
       },
     },
-  ],
+  },
 };
+
 jest.mock("./api/fetchShow");
+mockFetchShow.mockResolvedValue(showData);
 
 test("Renders with no errors", () => {
   render(<App />);
 });
 
-test("render episodes when api is called", () => {
-  mockFetchShow.mockResolvedValue(showData);
+test("render episodes when api is called", async () => {
+  render(<App />);
+
+
+  
 });
